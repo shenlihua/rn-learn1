@@ -36,8 +36,7 @@ export const req = async (uri, req_data={},method='get') => {
             });
         }
 
-        console.log(data);
-        console.log(config);
+        return data;
     } catch (error) {
         console.error(error);
     }

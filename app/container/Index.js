@@ -22,9 +22,22 @@ class IndexContainer extends Component {
         ],
     }
 
-    componentDidMount()  {
+    constructor(props){
+        super(props)
+        this.state={
+            msg :'test',
+        }
+    }
+
+    async componentDidMount()  {
         console.log('componentDidMount----req')
-        req('ad/flowImages',{abc:'123'})
+        const data = await req('ad/flowImages',{abc:'123'})
+        console.log(123)
+        console.log(data)
+        console.log(456)
+        this.setState({
+            msg:data.msg
+        })
     }
 
     render() {
@@ -33,6 +46,7 @@ class IndexContainer extends Component {
             <ScrollView style={style.root}>
                 {/*轮播图*/}
                 <FlowImages_index/>
+                <Text>{this.state.msg}</Text>
                 {/*分类*/}
                 <IndexCate
                     cate_data={this.props.cate_data}

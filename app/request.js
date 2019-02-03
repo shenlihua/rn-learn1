@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const instance = axios.create({
-    baseURL: 'https://some-domain.com/api/',
+    baseURL: 'http://192.168.1.104:9090/api.php/',
     timeout: 3000,
     headers: { 'X-Custom-Header': 'foobar' }
 });
@@ -25,14 +25,20 @@ instance.interceptors.response.use(function (response) {
 });
 
 
-export const Net = async (api, params) => {
-    return new Promise((resolve, reject) => {
-        instance.post(api, params)
-            .then(res => {
-                resolve(res.data)
-            })
-            .catch(error => {
-                reject(error)
-            })
-    })
+export const req = async (uri, req_data={},method='get') => {
+    console.log('axoid req')
+    try {
+        if(method==='post'){
+            var { data= {}, status=200, statusText= 'OK', headers= {},config={} } = await instance.post(uri,req_data);
+        }else{
+            var { data= {}, status=200, statusText= 'OK', headers= {},config={} } = await instance.get(uri,{
+                params: req_data
+            });
+        }
+
+        console.log(data);
+        console.log(config);
+    } catch (error) {
+        console.error(error);
+    }
 }

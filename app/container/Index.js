@@ -6,6 +6,7 @@ import IndexCate from "../components/IndexCate";
 import GoodsCard from "../components/GoodsCard";
 import TipContent from "../components/TipContent";
 import GoodsChip from "../components/GoodsChip";
+import {req} from "../request";
 class IndexContainer extends Component {
 
     static defaultProps = {
@@ -19,6 +20,11 @@ class IndexContainer extends Component {
             {name:'热水器/净水器',img:require('../assert/images/1.png')},
             {name:'配件及周边',img:require('../assert/images/1.png')},
         ],
+    }
+
+    componentDidMount()  {
+        console.log('componentDidMount----req')
+        req('ad/flowImages',{abc:'123'})
     }
 
     render() {

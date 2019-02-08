@@ -1,7 +1,8 @@
 import axios from 'axios';
+import { ToastAndroid } from 'react-native';
 
 const instance = axios.create({
-    baseURL: 'http://192.168.1.104:9090/api.php/',
+    baseURL: 'http://192.168.1.103:9090/api.php/',
     timeout: 3000,
     headers: { 'X-Custom-Header': 'foobar' }
 });
@@ -9,6 +10,7 @@ const instance = axios.create({
 //请求拦截处理
 instance.interceptors.request.use(function (config) {
     // 在发送请求之前做些什么
+    ToastAndroid.show('加载数据中...', ToastAndroid.SHORT)
     return config;
 }, function (error) {
     // 对请求错误做些什么

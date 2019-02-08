@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
-import {View,ScrollView,Text,Button,StyleSheet} from 'react-native'
+import {View,ScrollView,Text,Button,StyleSheet,RefreshControl} from 'react-native'
 
 import FlowImages_index from "../components/FlowImages_index";
 import IndexCate from "../components/IndexCate";
 import GoodsCard from "../components/GoodsCard";
 import TipContent from "../components/TipContent";
 import GoodsChip from "../components/GoodsChip";
-import {req} from "../request";
+// import {req} from "../request";
 class IndexContainer extends Component {
 
     static defaultProps = {
@@ -25,25 +25,52 @@ class IndexContainer extends Component {
     constructor(props){
         super(props)
         this.state={
-            msg :'test',
+            // msg :'test',
+            refreshing: false,
         }
     }
 
-    async componentDidMount()  {
-        console.log('componentDidMount----req')
+
+     _onRefresh = async ()=>{
+        this.setState({refreshing: true});
         const data = await req('ad/flowImages',{abc:'123'})
-        console.log(123)
+        console.log(123+'_onRefresh')
         console.log(data)
-        console.log(456)
         this.setState({
-            msg:data.msg
+            msg:data.msg,
+            refreshing: false
+        })
+    }
+
+    // async componentDidMount()  {
+    //     // console.log('componentDidMount----req')
+    //     // const data = await req('ad/flowImages',{abc:'123'})
+    //     // console.log(123)
+    //     // console.log(data)
+    //     // console.log(456)
+    //     // this.setState({
+    //     //     msg:data.msg
+    //     // })
+    // }
+    onGoodsDetail = (id=0)=>{
+        console.log(id)
+        this.props.navigation.navigate('Detail',{
+            id:id
         })
     }
 
     render() {
-        console.log(typeof this.props.cate_data)
+        // console.log(typeof this.props.cate_data)
         return (
-            <ScrollView style={style.root}>
+            <ScrollView
+                style={style.root}
+                refreshControl={
+                    <RefreshControl
+                        refreshing={this.state.refreshing}
+                        onRefresh={this._onRefresh}
+                    />
+                }
+            >
                 {/*轮播图*/}
                 <FlowImages_index/>
                 <Text>{this.state.msg}</Text>
@@ -57,6 +84,7 @@ class IndexContainer extends Component {
                             <GoodsCard
                                 key={'GoodsCard'+index}
                                 style={style.goodsCard}
+                                id={value}
                                 image={require('../assert/images/goods_card.png')}
                                 name={'我的商品'+index}
                                 intro='NBDSdf65465'
@@ -64,9 +92,10 @@ class IndexContainer extends Component {
                                 view={9999}
                                 comment={9999}
                                 coll={9999}
+                                onGoodsDetail={this.onGoodsDetail}
                             />
                     )
-                })}
+                },this)}
 
                 <TipContent
                     title='精选单品'

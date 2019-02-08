@@ -25,12 +25,13 @@ const IndexStack = createStackNavigator(
     {
         Detail:{
             screen:DetailContainer,
-            navigationOptions:({ navigation }) => ({
+            navigationOptions:({ navigation,screenProps }) => ({
                 title:'详情',
-                headerTintColor:'blue',
-                headerStyle:{
-                    backgroundColor:'yellow'
-                }
+                tabBarOnPress: ({ previousScene, scene, jumpToIndex }) => {
+                    StatusBar.setBarStyle('dark-content');
+                    isAndroid && StatusBar.setBackgroundColor('#ecf0f1');
+                    jumpToIndex(scene.index);
+                },
             }),
         },
         Index:{
@@ -41,7 +42,13 @@ const IndexStack = createStackNavigator(
         }
     },
     {
-        initialRouteName:'Index',
+        initialRouteName:'Detail',
+        defaultNavigationOptions: {
+            headerTintColor: '#000',
+            headerStyle: {
+                backgroundColor: '#fff',
+            },
+        },
     }
 )
 

@@ -1,10 +1,15 @@
 import React, {Component} from 'react';
-import {View,Text,Image,StyleSheet} from 'react-native'
+import PropTypes from 'prop-types'
+import {View,Text,Image,StyleSheet,TouchableHighlight } from 'react-native'
 import SvgUri from 'react-native-svg-uri'
 
 export default class GoodsCard extends Component {
+    static propTypes = {
+        onGoodsDetail:PropTypes.func,
+    }
     static defaultProps = {
         style:{},
+        id:0,
         image:'',
         name:'',
         intro:'',
@@ -13,14 +18,24 @@ export default class GoodsCard extends Component {
         comment:0,
         coll:0,
     }
+
+    _onGoodsDetail = (foo)=>{
+        this.props.onGoodsDetail(this.props.id)
+    }
     render() {
         return (
 
             <View style={{...style.root,...this.props.style}}>
 
-                <View style={style.image}>
-                    <Image style={style.imageCom} source={this.props.image}/>
-                </View>
+                <TouchableHighlight
+                    style={style.image}
+                    onPress={this._onGoodsDetail}
+                >
+                    <Image
+                        style={style.imageCom}
+                        source={this.props.image}
+                    />
+                </TouchableHighlight>
                 <View style={style.info}>
                     <View style={style.intro}>
                         <Text style={style.introName}>{this.props.name}</Text>

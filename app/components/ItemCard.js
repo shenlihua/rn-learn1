@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types'
 import {View,Text,StyleSheet} from "react-native";
-import SvgUri from 'react-native-svg-uri'
+import Svg from '../components/Svg'
 
 class ItemCard extends Component {
     static propTypes = {
-        leftIcon:PropTypes.number,
+        leftIcon:PropTypes.string,
         leftIconFill:PropTypes.string,
         text:PropTypes.string,
         extra:PropTypes.string,
@@ -15,12 +15,12 @@ class ItemCard extends Component {
         return (
             <View style={style.otherBlockItem}>
                 <View style={style.otherBlockItemCommentContent}>
-                    <SvgUri width='30' height='30' fill={this.props.leftIconFill}  source={this.props.leftIcon}/>
+                    <Svg size='30' fill={this.props.leftIconFill}  icon={this.props.leftIcon}/>
                     <Text style={style.otherBlockItemText}>{this.props.text}</Text>
                 </View>
                 <View style={style.otherBlockItemCommentContent}>
                     <Text style={style.otherBlockItemTextExtra}>{this.props.extra}</Text>
-                    <SvgUri width='15' height='15' fill='#B4B4B4' source={require('../assert/icons/right.svg')}/>
+                    <Svg size='15' fill='#B4B4B4' icon="right"/>
                 </View>
             </View>
         );

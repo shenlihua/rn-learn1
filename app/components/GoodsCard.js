@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types'
 import {View,Text,Image,StyleSheet,TouchableHighlight } from 'react-native'
-import SvgUri from 'react-native-svg-uri'
+import Svg from '../components/Svg'
 
 export default class GoodsCard extends Component {
     static propTypes = {
@@ -45,15 +45,15 @@ export default class GoodsCard extends Component {
                         <Text style={style.otherPrice}>{this.props.price}</Text>
                         <View style={style.number}>
                             <View style={style.numberBlock}>
-                                <SvgUri width='25' height='25' fill={'#ccc'}  source={require('../assert/icons/browse.svg')} />
+                                <Svg size='25' fill={'#ccc'}  icon="browse" />
                                 <Text style={style.numberBlockText}>{this.props.view}</Text>
                             </View>
                             <View style={style.numberBlock}>
-                                <SvgUri width='25' height='25' fill={'#ccc'}  source={require('../assert/icons/interactive.svg')} />
+                                <Svg size='25' fill={'#ccc'}  icon="interactive" />
                                 <Text style={style.numberBlockText}>{this.props.comment}</Text>
                             </View>
                             <View style={style.numberBlock}>
-                                <SvgUri width='25' height='25' fill={'#ccc'}  source={require('../assert/icons/collection.svg')} />
+                                <Svg size='25' fill={'#ccc'}  icon="collection" />
                                 <Text style={style.numberBlockText}>{this.props.coll}</Text>
                             </View>
                         </View>

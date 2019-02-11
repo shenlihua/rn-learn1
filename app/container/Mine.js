@@ -1,16 +1,16 @@
 import React, {Component} from 'react';
 import {View,ScrollView,Image,Text,Button,StyleSheet} from 'react-native'
-import SvgUri from 'react-native-svg-uri'
+import Svg from '../components/Svg'
 import TipDetail from "../components/TipDetail";
 import ItemCard from "../components/ItemCard";
 export default class MineContainer extends Component {
     static defaultProps = {
         order_btn:[
-            {name:'待付款',uri:'',icon:require('../assert/icons/creditcard.svg')},
-            {name:'待发货',uri:'',icon:require('../assert/icons/gift.svg')},
-            {name:'待收货',uri:'',icon:require('../assert/icons/31daishouhuo.svg')},
-            {name:'评价管理',uri:'',icon:require('../assert/icons/message.svg')},
-            {name:'退款/售后',uri:'',icon:require('../assert/icons/tuikuantuihuo.svg')},
+            {name:'待付款',uri:'',icon:"creditcard"},
+            {name:'待发货',uri:'',icon:"gift"},
+            {name:'待收货',uri:'',icon:"31daishouhuo"},
+            {name:'评价管理',uri:'',icon:"message"},
+            {name:'退款/售后',uri:'',icon:"tuikuantuihuo"},
         ],
         info_data:[
             {name:'我的收藏',number:0,ext:''},
@@ -29,7 +29,7 @@ export default class MineContainer extends Component {
                         <Text style={style.name}>xxxx</Text>
                     </View>
                     <View style={style.rightContent}>
-                        <SvgUri width='30' height='30' fill='#fff'  source={require('../assert/icons/homepage.svg')}/>
+                        <Svg size='30' fill='#fff'  icon="homepage" />
                     </View>
                 </View>
                 <View style={style.main}>
@@ -43,7 +43,7 @@ export default class MineContainer extends Component {
                                 {this.props.order_btn.map(function(value, index){
                                     return (
                                         <View key={'orderBlock'+index} style={style.orderItem}>
-                                            <SvgUri width='30' height='30' fill='#000'  source={value.icon}/>
+                                            <Svg size='30'  fill='#000'  icon={value.icon}/>
                                             <Text style={style.orderItemText}>{value.name}</Text>
                                         </View>
                                     )
@@ -67,14 +67,13 @@ export default class MineContainer extends Component {
                     </View>
 
                     <View style={style.mainItem}>
-                        <Button title={'xxxx'} onPress={()=>this.props.navigation.navigate('Orders')}/>
                         <ItemCard
-                            leftIcon={require('../assert/icons/question-circle-fill.svg')}
+                            leftIcon="question-circle-fill"
                             leftIconFill='#FBAF86'
                             text='帮助中心'
                         />
                         <ItemCard
-                            leftIcon={require('../assert/icons/chilun.svg')}
+                            leftIcon="chilun"
                             leftIconFill='#96E5FB'
                             text='设置'
                             extra='账户设置、地址'

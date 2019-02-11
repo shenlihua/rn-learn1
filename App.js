@@ -15,7 +15,7 @@ import combine from "./app/reducers/combine";
 
 const AppContainer = createAppContainer(nav)
 const store = createStore(combine)
-export default class App extends Component<Props> {
+export default class App extends Component {
 
     render() {
 

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {View,Text,StyleSheet,TouchableOpacity} from 'react-native'
-import SvgUri from 'react-native-svg-uri'
+import Svg from '../components/Svg'
 
 export default class TipDetail extends Component {
     static propTypes = {
@@ -25,7 +25,7 @@ export default class TipDetail extends Component {
                     <Text style={style.title}>{this.props.title}</Text>
                     <View style={style.rightContent}>
                         <Text style={style.rightTitle}>{this.props.rightTitle}</Text>
-                        <SvgUri width='25' height='25' fill={'#ccc'} source={require('../assert/icons/right.svg')} />
+                        <Svg size='25' fill={'#ccc'} icon="right" />
                     </View>
                 </TouchableOpacity>
                 <View style={[style.content,this.props.styleContent]}>

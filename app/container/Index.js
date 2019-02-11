@@ -26,32 +26,10 @@ class IndexContainer extends Component {
         super(props)
         this.state={
             // msg :'test',
-            refreshing: false,
+
         }
     }
 
-
-     _onRefresh = async ()=>{
-        this.setState({refreshing: true});
-        const data = await req('ad/flowImages',{abc:'123'})
-        console.log(123+'_onRefresh')
-        console.log(data)
-        this.setState({
-            msg:data.msg,
-            refreshing: false
-        })
-    }
-
-    // async componentDidMount()  {
-    //     // console.log('componentDidMount----req')
-    //     // const data = await req('ad/flowImages',{abc:'123'})
-    //     // console.log(123)
-    //     // console.log(data)
-    //     // console.log(456)
-    //     // this.setState({
-    //     //     msg:data.msg
-    //     // })
-    // }
     onGoodsDetail = (id=0)=>{
         console.log(id)
         this.props.navigation.navigate('Detail',{
@@ -64,12 +42,7 @@ class IndexContainer extends Component {
         return (
             <ScrollView
                 style={style.root}
-                refreshControl={
-                    <RefreshControl
-                        refreshing={this.state.refreshing}
-                        onRefresh={this._onRefresh}
-                    />
-                }
+
             >
                 {/*轮播图*/}
                 <FlowImages_index/>
